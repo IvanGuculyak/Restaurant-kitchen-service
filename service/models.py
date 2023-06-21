@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Cook(AbstractUser):
-    years_of_experience = models.IntegerField()
+    years_of_experience = models.IntegerField(null=True, blank=True)
 
     class Meta:
         ordering = ["username"]
@@ -20,7 +20,7 @@ class DishType(models.Model):
         ordering = ["name"]
 
     def __str__(self):
-        return {self.name}
+        return f"{self.name}"
 
 
 class Ingredient(models.Model):
@@ -30,12 +30,12 @@ class Ingredient(models.Model):
         ordering = ["name"]
 
     def __str__(self):
-        return {self.name}
+        return f"{self.name}"
 
 
 class Dish(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     dish_type = models.ForeignKey(
         DishType,
