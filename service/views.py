@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 
 from service.models import Dish, Ingredient, DishType, Cook
 
@@ -21,3 +22,22 @@ def index(request):
         "service/index.html",
         context=context
     )
+
+
+class IngredientListView(generic.ListView):
+    model = Ingredient
+
+
+class DishTypeListView(generic.ListView):
+    model = DishType
+    template_name = "service/dish_type_list.html"
+    context_object_name = "dish_type_list"
+
+
+class DishListView(generic.ListView):
+    model = Dish
+    queryset = Dish.objects.all().select_related("dish_type")
+
+
+class CookListView(generic.ListView):
+    model = Cook

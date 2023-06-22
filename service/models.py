@@ -56,6 +56,6 @@ class Dish(models.Model):
         ordering = ["name"]
 
     def __str__(self):
-        return f"{self.name} (price: {self.price}, dish type: {self.dish_type.name}"
+        return f"{self.name} (price: {self.price}, dish type: {self.dish_type.name})"
 
 
