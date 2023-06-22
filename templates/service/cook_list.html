@@ -6,7 +6,7 @@
     <ul>
       {% for cook in cook_list %}
         <li>
-          <a href="#">{{ cook.username }}</a>
+          <a href="{{cook.get_absolute_url}}">{{ cook.username }}</a>
           ({{ cook.first_name }} {{ cook.last_name }})
         </li>
       {% endfor %}
