@@ -6,14 +6,28 @@
     <a style="float:right" href="{% url 'service:cook-create' %}" class="btn btn-primary">+</a>
   </h1>
   {% if cook_list %}
-    <ul>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Full name</th>
+        <th>Username</th>
+        <th>Experience</th>
+      </tr>
       {% for cook in cook_list %}
-        <li>
-          <a href="{{cook.get_absolute_url}}">{{ cook.username }}</a>
-          ({{ cook.first_name }} {{ cook.last_name }})
-        </li>
+        <tr>
+          <td><a href="{{ cook.get_absolute_url }}">{{ cook.id }}</a></td>
+          <td>
+            {{ cook.first_name }} {{ cook.last_name }}
+          </td>
+          <td>
+            {{ cook.username }}
+          </td>
+          <td>
+            {{ cook.years_of_experience|default_if_none:"" }}
+          </td>
+        </tr>
       {% endfor %}
-    </ul>
+    </table>
   {% else %}
     <p>There are no cook in kitchen.</p>
   {% endif %}

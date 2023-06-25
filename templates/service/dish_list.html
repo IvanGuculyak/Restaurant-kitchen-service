@@ -1,19 +1,44 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>
     Dish List
     <a style="float:right" href="{% url 'service:cook-create' %}" class="btn btn-primary">+</a>
   </h1>
+
+  <form class="form-inline" action="" method="get">
+    {{ search_form|crispy }}
+    <input type="submit" value="Search" class="btn btn-secondary">
+  </form>
+
+  <br>
+
   {% if dish_list %}
-    <ul>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Dish type</th>
+      </tr>
       {% for dish in dish_list %}
-        <li>
-          <a href="{{dish.get_absolute_url}}">{{ dish.name }}</a>
-          (price: {{ dish.price }}, dish type: {{ dish.dish_type.name }})
-        </li>
+        <tr>
+          <td>
+            <a href="{{ dish.get_absolute_url }}">{{ dish.id }}</a>
+          </td>
+          <td>
+            {{ dish.name }}
+          </td>
+          <td>
+            {{ dish.price }}
+          </td>
+          <td>
+            {{ dish.dish_type.name }}
+          </td>
+        </tr>
       {% endfor %}
-    </ul>
+    </table>
   {% else %}
     <p>There are no dishes in kitchen.</p>
   {% endif %}
