@@ -53,7 +53,8 @@ class Dish(models.Model):
     )
     cooks = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        related_name="dishes"
+        related_name="dishes",
+        blank=True
     )
 
     class Meta:
