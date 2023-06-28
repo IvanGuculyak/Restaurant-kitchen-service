@@ -1,13 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Delete Ingredient</h1>
-
-  <p>Are you sure you want to delete Ingredient: {{ ingredient }}?</p>
-  <p><i>All Dishes with this ingredient will be also deleted!</i></p>
-
-  <form action="" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Yes, delete" class="btn btn-danger">
-  </form>
+  <div class="container my-auto">
+    <div class="row">
+      <div class=" col-md-8 col-12 mx-auto mt-5">
+        <div class="card z-index-0 fadeIn3 fadeInBottom">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+              <h3 class="text-black font-weight-bolder text-center mt-3 mb-0">
+                Delete Ingredient
+              </h3>
+            </div>
+          </div>
+          <div class="text-center">
+            <p>Are you sure you want to delete Ingredient: {{ ingredient }}?</p>
+            <p><i>All Dishes with this ingredient will be also deleted!</i></p>
+          </div>
+          <div class="card-body">
+            <form action="" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Yes, delete" class="btn btn-danger w-100 my-4 mb-2">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
