@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="card p-2">
+    <h1>
+      Cook List
+      <a style="float:right" href="{% url 'service:cook-create' %}" class="btn btn-primary">+</a>
+    </h1>
+    {% if cook_list %}
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Full name</th>
+          <th>Username</th>
+          <th>Experience</th>
+        </tr>
+      {% for cook in cook_list %}
+        <tr>
+          <td><a href="{{ cook.get_absolute_url }}">{{ cook.id }}</a></td>
+          <td>
+            {{ cook.first_name }} {{ cook.last_name }}
+          </td>
+          <td>
+            {{ cook.username }}
+          </td>
+          <td>
+            {{ cook.years_of_experience|default_if_none:"" }}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+      <p>There are no cook in kitchen.</p>
+    {% endif %}
+  </div>
+{% endblock %}
