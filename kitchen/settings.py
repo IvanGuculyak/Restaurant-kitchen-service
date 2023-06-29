@@ -14,7 +14,9 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+
+if os.path.exists(".env.sample"):
+    load_dotenv(".env.sample")
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -87,7 +89,7 @@ WSGI_APPLICATION = "kitchen.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3"
     }
 }
 
